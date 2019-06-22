@@ -1,0 +1,20 @@
+{
+  "name": "VNetGraph",
+  "version": "1.0.0",
+  "description": "Network Graph Visualization",
+  "main": "index.js",
+  "author": "Tyler Maclachlan",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.4"
+  }
+}
