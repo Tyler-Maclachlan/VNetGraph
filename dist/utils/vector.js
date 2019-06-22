@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function addVecs(vec1, vec2) {
+function addVectors(vec1, vec2) {
     return {
         x: vec1.x + vec2.x,
         y: vec1.y + vec2.y
     };
 }
-exports.addVecs = addVecs;
-function subVecs(vec1, vec2) {
+exports.addVectors = addVectors;
+function subVectors(vec1, vec2) {
     return {
         x: vec1.x - vec2.x,
         y: vec1.y - vec2.y
     };
 }
-exports.subVecs = subVecs;
+exports.subVectors = subVectors;
 function multiplyVecByScalar(vec, scalar) {
     return {
         x: vec.x * scalar,
@@ -44,24 +44,24 @@ function normalizeVec(vec) {
     return divideVecByScalar(vec, getVecLength(vec));
 }
 exports.normalizeVec = normalizeVec;
-function getDistanceBetweenVecs(vec1, vec2) {
+function getDistanceBetweenVectors(vec1, vec2) {
     var dx = vec1.x - vec2.x;
     var dy = vec1.y - vec2.y;
     return Math.sqrt(dx * dx + dy * dy);
 }
-exports.getDistanceBetweenVecs = getDistanceBetweenVecs;
-function dotVecs(vec1, vec2) {
+exports.getDistanceBetweenVectors = getDistanceBetweenVectors;
+function dotVectors(vec1, vec2) {
     return vec1.x * vec2.y + vec1.y * vec2.y;
 }
-exports.dotVecs = dotVecs;
-function getAngleBetweenVecs(vec1, vec2) {
+exports.dotVectors = dotVectors;
+function getAngleBetweenVectors(vec1, vec2) {
     var vec1Len = getVecLength(vec1);
     var vec2Len = getVecLength(vec2);
-    var dot = dotVecs(vec1, vec2);
+    var dot = dotVectors(vec1, vec2);
     var theta = dot / (vec1Len * vec2Len);
     return radsToDegrees(Math.acos(theta));
 }
-exports.getAngleBetweenVecs = getAngleBetweenVecs;
+exports.getAngleBetweenVectors = getAngleBetweenVectors;
 function radsToDegrees(rads) {
     return (rads * 180) / Math.PI;
 }

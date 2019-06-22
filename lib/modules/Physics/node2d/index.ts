@@ -1,7 +1,12 @@
-import { Vector, addVecs, multiplyVecByScalar } from '../../../utils';
+import {
+  Vector,
+  addVectors,
+  multiplyVecByScalar,
+  isVecZero
+} from "../../../utils";
 
 export default class Node2D {
-  public accelleration: Vector;
+  public acceleration: Vector;
   public velocity: Vector;
   public mass: number;
   public position: Vector;
@@ -10,15 +15,17 @@ export default class Node2D {
     this.mass = mass;
     this.position = position;
 
-    this.accelleration = { x: 0, y: 0 };
+    this.acceleration = { x: 0, y: 0 };
     this.velocity = { x: 0, y: 0 };
   }
 
   public update() {
-    this.velocity = addVecs(this.velocity, this.accelleration);
-    this.position = addVecs(this.position, this.velocity);
+    this.velocity = addVectors(this.velocity, this.acceleration);
+    if (!isVecZero(this.velocity)) {
+      this.position = addVectors(this.position, this.velocity);
+    }
 
     this.velocity = multiplyVecByScalar(this.velocity, 0.7);
-    this.accelleration = multiplyVecByScalar(this.accelleration, 0.3);
+    this.acceleration = multiplyVecByScalar(this.acceleration, 0.3);
   }
 }

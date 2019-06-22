@@ -1,5 +1,9 @@
-import Node2D from '../node2d';
-import { getDistanceBetweenVecs, subVecs, normalizeVec } from '../../../utils';
+import Node2D from "../node2d";
+import {
+  getDistanceBetweenVectors,
+  subVectors,
+  normalizeVec
+} from "../../../utils";
 
 const DAMPING: number = 0.03;
 
@@ -22,20 +26,22 @@ export default class Spring2D {
   }
 
   public update() {
-    let xAbs = getDistanceBetweenVecs(this.node1.position, this.node2.position);
+    let xAbs = getDistanceBetweenVectors(
+      this.node1.position,
+      this.node2.position
+    );
 
     xAbs = xAbs || 1;
 
     const norm1 = normalizeVec(
-      subVecs(this.node2.position, this.node1.position)
+      subVectors(this.node2.position, this.node1.position)
     );
     const norm2 = normalizeVec(
-      subVecs(this.node1.position, this.node2.position)
+      subVectors(this.node1.position, this.node2.position)
     );
 
-    const v1 = subVecs(this.node1.velocity, this.node2.velocity);
-    const v2 = subVecs(this.node2.velocity, this.node1.velocity);
-    console.log(xAbs);
+    const v1 = subVectors(this.node1.velocity, this.node2.velocity);
+    const v2 = subVectors(this.node2.velocity, this.node1.velocity);
 
     const F1x =
       this.stiffness * (xAbs - this.restDistance) * (norm1.x / xAbs) -
@@ -51,12 +57,10 @@ export default class Spring2D {
       this.stiffness * (xAbs - this.restDistance) * (norm2.y / xAbs) -
       DAMPING * v2.y;
 
-    console.log(F1x, F1y, F2x, F2y);
+    this.node1.acceleration.x += F1x / this.node1.mass;
+    this.node1.acceleration.y += F1y / this.node1.mass;
 
-    this.node1.accelleration.x += F1x / this.node1.mass;
-    this.node1.accelleration.y += F1y / this.node1.mass;
-
-    this.node2.accelleration.x += F2x / this.node2.mass;
-    this.node2.accelleration.y += F2y / this.node2.mass;
+    this.node2.acceleration.x += F2x / this.node2.mass;
+    this.node2.acceleration.y += F2y / this.node2.mass;
   }
 }

@@ -3,14 +3,14 @@ export interface Vector {
   y: number;
 }
 
-export function addVecs(vec1: Vector, vec2: Vector): Vector {
+export function addVectors(vec1: Vector, vec2: Vector): Vector {
   return {
     x: vec1.x + vec2.x,
     y: vec1.y + vec2.y
   };
 }
 
-export function subVecs(vec1: Vector, vec2: Vector): Vector {
+export function subVectors(vec1: Vector, vec2: Vector): Vector {
   return {
     x: vec1.x - vec2.x,
     y: vec1.y - vec2.y
@@ -46,24 +46,23 @@ export function normalizeVec(vec: Vector): Vector {
   return divideVecByScalar(vec, getVecLength(vec));
 }
 
-export function getDistanceBetweenVecs(vec1: Vector, vec2: Vector) {
+export function getDistanceBetweenVectors(vec1: Vector, vec2: Vector) {
   const dx = vec1.x - vec2.x;
   const dy = vec1.y - vec2.y;
 
   return Math.sqrt(dx * dx + dy * dy);
 }
 
-export function dotVecs(vec1: Vector, vec2: Vector): number {
+export function dotVectors(vec1: Vector, vec2: Vector): number {
   return vec1.x * vec2.y + vec1.y * vec2.y;
 }
 
-export function getAngleBetweenVecs(vec1: Vector, vec2: Vector) {
-  const vec1Len = getVecLength(vec1);
-  const vec2Len = getVecLength(vec2);
+export function isVecZero(vec: Vector) {
+  return getVecLength(vec) < 0.0001;
+}
 
-  const dot = dotVecs(vec1, vec2);
-  const theta = dot / (vec1Len * vec2Len);
-  return radsToDegrees(Math.acos(theta));
+export function getAngleBetweenVectors(vec1: Vector, vec2: Vector) {
+  return (Math.atan2(vec2.y - vec1.y, vec2.x - vec1.x) * 180) / Math.PI;
 }
 
 export function radsToDegrees(rads: number) {

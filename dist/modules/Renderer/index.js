@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var utils_1 = require("../../utils");
 function createLine(context, edge) {
-    var len = utils_1.getDistanceBetweenVecs(edge.node1.position, edge.node2.position);
+    var len = utils_1.getDistanceBetweenVectors(edge.node1.position, edge.node2.position);
     context.beginPath();
     context.lineWidth = 2;
     context.strokeStyle = 'blue';
